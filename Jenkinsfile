@@ -4,7 +4,7 @@ pipeline {
 
     stages {
  
-        stage('BUild Docker image') {
+        stage('checkout verification') {
 
 	   steps {
 
@@ -12,10 +12,23 @@ pipeline {
 	      echo 'Building DOcker Image...'
               sh 'pwd'
               sh 'ls -l'
-              sh 'docker build -t myjenkinswebsite:v1 .'
-
+            
 	  }
+       stage('Build Docker Image') {
+	  
+ 	   steps {
+   		
+	    sh 'docker build -t myjenkinswebsite:v1 .'
+        	}
+	} 
+    
+       stage('DOcekr image tag') {
 
+	   steps {
+          
+            sh 'docker tag myjenkinswebsite:v1 lakareshital/myjenkinswebsite:v1'
+        	}
+	}
        }
     }
 }
