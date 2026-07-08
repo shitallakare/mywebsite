@@ -51,5 +51,15 @@ pipeline {
  
        }
     }
- }
+
+	stage('push Docker Image') {
+	
+	  steps {
+
+  	    echo 'pushing DOcker image to docker hub'
+     
+            sh 'docker push lakareshital/myjenkinswebsite:v1'
+	  }
+	}
+}
 }
